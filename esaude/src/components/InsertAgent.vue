@@ -77,7 +77,7 @@
             <td>{{ agent.nome }}</td>
             <td>{{ agent.sobrenome }}</td>
             <td>{{ agent.celular }}</td>
-            <td>{{ agent.dataNascimento.toLocaleDateString() }}</td>
+            <td>{{ agent.dataNascimento }}</td>
             <td>{{ agent.email }}</td>
             <td>{{ agent.cargo }}</td>
             <td>{{ agent.ativo }}</td>

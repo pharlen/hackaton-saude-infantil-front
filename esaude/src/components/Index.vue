@@ -8,7 +8,7 @@
       <div class="login">
         <input type="text" name="username" placeholder="Usuário" />
         <input type="password" name="password" placeholder="Senha" />
-        <button class="btn" type="button">Login</button>
+        <button @click="$router.push({ name: 'InsertAgent'})" class="btn" type="button">Login</button>
       </div>
     </form>
   </div>
