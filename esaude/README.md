@@ -1,6 +1,7 @@
 # esaude
 
-> A Vue.js project
+> Front-end para a interação com o bot desenvolvido para o hackaton Saúde Infantil promovido pela Desiderata.
+Vue.js Project.
 
 ## Build Setup
 
