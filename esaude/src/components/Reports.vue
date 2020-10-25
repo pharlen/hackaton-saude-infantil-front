@@ -17,11 +17,11 @@
         </thead>
 
         <tbody>
-          <tr v-for="individual in individuals" :key="individual.id">
-            <td>{{ individual.nome }}</td>
-            <td>{{ individual.idade }}</td>
-            <td>{{ individual.peso }}</td>
-            <td>{{ individual.altura }}</td>
+          <tr v-for="person in persons" :key="person.id">
+            <td>{{ person.nome }}</td>
+            <td>{{ person.idade }}</td>
+            <td>{{ person.peso }}</td>
+            <td>{{ person.altura }}</td>
           </tr>
         </tbody>
       </table>
@@ -30,26 +30,30 @@
 </template>
 
 <script>
-import json from "@/components/person.json";
+import json from "@/components/person.json"
+import axios from 'axios'
 export default {
   name: "Reports",
   data() {
     return {
-      individuals: json,
-      /* individuals: [
-        {id: 1, nome: 'Jonas Sampaio', altura: '146', peso: '40', idade: 13, idEscola: 22},
-        {id: 2, nome: 'Alice Lima', altura: '149', peso: '56,5', idade: 15, idEscola: 22},
-        {id: 3, nome: 'Luana Cardoso', altura: '133', peso: '31,2', idade: 10, idEscola: 22},
-        {id: 4, nome: 'Ricardo Vieira', altura: '142', peso: '36,7', idade: 12, idEscola: 22},
-        {id: 5, nome: 'Maria da Silva', altura: '145', peso: '42,3', idade: 12, idEscola: 22}
-      ] */
-    };
+      persons: []
+    }
   },
   methods: {
-      log() {
-          console.log(this.json)
-      }
-  }
+    
+  },
+  beforeMount() {
+      const proxyurl = "https://cors-anywhere.herokuapp.com/"
+      const url = "https://hacka-saude-desiderata.herokuapp.com/aluno"
+      axios.get(url).then(res => {
+        this.persons = res.data
+        console.log(this.persons)
+    })
+    .catch(function(err){
+        console.log(err);
+    })
+      
+    }
 };
 </script>
 
