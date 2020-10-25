@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: "InsertData",
   data() {
@@ -56,7 +57,11 @@ export default {
         idade: this.personAge,
         idEscola: 22
       }
-      console.log(person);
+      const proxyurl = "https://cors-anywhere.herokuapp.com/"
+        const url = "https://hacka-saude-desiderata.herokuapp.com/aluno"
+      const res = axios.post((proxyurl + url), person)
+      console.log(res)
+      alert("Dados Inseridos!")
     },
   },
 };

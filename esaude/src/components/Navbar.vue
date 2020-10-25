@@ -31,7 +31,7 @@
           </li>
             <li>
             <a href="">
-              <router-link to="">
+              <router-link :to="{ name: 'Account'}">
                 <i class="material-icons" style="font-size: 30px">account_circle</i>
               </router-link>
             </a>

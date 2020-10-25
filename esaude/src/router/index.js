@@ -4,6 +4,7 @@ import Index from '@/components/Index'
 import Reports from '@/components/Reports'
 import InsertAgent from '@/components/InsertAgent'
 import InsertData from '@/components/InsertData'
+import Account from '@/components/Account'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/insert-data',
       name: 'InsertData',
       component: InsertData
+    },
+    {
+      path: '/account',
+      name: 'Account',
+      component: Account
     }
   ]
 })
