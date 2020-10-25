@@ -73,14 +73,14 @@
         </thead>
 
         <tbody>
-          <tr v-for="(agent, index) in agents" :key="index">
-            <td>{{ agent.name }}</td>
-            <td>{{ agent.surname }}</td>
-            <td>{{ agent.phone }}</td>
-            <td>{{ agent.birth }}</td>
+          <tr v-for="agent in agents" :key="agent.id">
+            <td>{{ agent.nome }}</td>
+            <td>{{ agent.sobrenome }}</td>
+            <td>{{ agent.celular }}</td>
+            <td>{{ agent.dataNascimento.toLocaleDateString() }}</td>
             <td>{{ agent.email }}</td>
-            <td>{{ agent.role }}</td>
-            <td>{{ agent.active }}</td>
+            <td>{{ agent.cargo }}</td>
+            <td>{{ agent.ativo }}</td>
           </tr>
           </tbody>
           </table>
@@ -90,6 +90,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: "InsertAgent",
   data() {
@@ -102,62 +103,41 @@ export default {
       agentRole: null,
       agentActive: null,
 
-      agents: [
-        {
-          name: "João",
-          surname: "Silva",
-          phone: "00-000000000",
-          birth: "2020-10-17",
-          email: "joao@esaude.com",
-          role: "Agente de Saude",
-          active: "Sim",
-        },
-        {
-          name: "Ricardo",
-          surname: "Fernandes",
-          phone: "00-000000000",
-          birth: "2020-10-17",
-          email: "ricardo@esaude.com",
-          role: "Agente de Saude",
-          active: "Sim",
-        },
-        {
-          name: "Roberta",
-          surname: "Costa",
-          phone: "00-000000000",
-          birth: "2020-10-17",
-          email: "roberta@esaude.com",
-          role: "Professor",
-          active: "Sim",
-        },
-        {
-          name: "Lucia",
-          surname: "Gimenez",
-          phone: "00-000000000",
-          birth: "2020-10-17",
-          email: "lucia@esaude.com",
-          role: "Professor",
-          active: "Sim",
-        }
-
-      ],
+      agents: []
+      
     };
   },
   methods: {
     addAgent() {
         let agent = {
-        name: this.agentName,
-        surname: this.agentSurname,
-        phone: this.agentPhone,
-        birth: this.agentBirth,
+        nome: this.agentName,
+        sobrenome: this.agentSurname,
+        celular: this.agentPhone,
+        dataNascimento: this.agentBirth,
         email: this.agentEmail,
-        role: this.agentRole,
-        active: this.agentActive
+        cargo: this.agentRole,
+        ativo: this.agentActive
       }
-      this.agents.push(agent);
-      console.log(this.agents);
+      const proxyurl = "https://cors-anywhere.herokuapp.com/"
+      const url = "https://hacka-saude-desiderata.herokuapp.com/agente"
+      console.log(agent)
+      const res = axios.post((proxyurl + url), agent).then(res => { 
+        console.log(res)
+      })
+      alert("Dados Inseridos!")
     },
   },
+  beforeMount() {
+      const proxyurl = "https://cors-anywhere.herokuapp.com/"
+      const url = "https://hacka-saude-desiderata.herokuapp.com/agente"
+      axios.get(proxyurl+url).then(res => {
+        this.agents = res.data
+        console.log(res)
+    })
+    .catch(function(err){
+        console.log(err);
+    })
+    }
 };
 </script>
 

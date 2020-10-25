@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import json from "@/components/person.json"
 import axios from 'axios'
 export default {
   name: "Reports",
@@ -52,7 +51,6 @@ export default {
     .catch(function(err){
         console.log(err);
     })
-      
     }
 };
 </script>
