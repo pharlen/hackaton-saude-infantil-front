@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import moment from 'moment'
 
 Vue.config.productionTip = false
 
@@ -13,3 +14,9 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).add(1, 'days').format('DD/MM/YYYY')
+  }
+});
